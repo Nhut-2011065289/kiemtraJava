@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:mlns="http://www.w3.org/1999/xhtml"
+      mlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> MY BOOK LIST</title>
+  <th:block th:replace="layout :: link-css"></th:block>
+</head>
+<body>
+<th:block th:replace="layout :: header"></th:block>
+<div class="container">
+  <h1 th:text="${title}"></h1>
+  <table class="table">
+    <tr>
+      <th> MÃ NHÂN VIÊN: </th>
+      <th> HỌ VÀ TÊN NHÂN VIÊN: </th>
+      <th> GIỚI TÍNH: </th>
+      <th> NƠI SINH</th>
+      <th> TÊN PHÒNG BAN: </th>
+      <th> TIỀN LƯƠNG: </th>
+    </tr>
+    <tr th:each="nhanvien : ${nhanviens}">
+      <td th:text="${nhanvien.maNv}"></td>
+      <td th:text="${nhanvien.tenNv}"></td>
+      <td>
+        <img style="width:50px"  th:if="${nhanvien.Phai.equalsIgnoreCase('Nam')}" th:src="@{images/Nam.JPG}" alt="Man Avatar">
+        <img style="width:50px" th:if="${nhanvien.Phai.equalsIgnoreCase('Nu')}" th:src="@{images/Nu.JPG}" alt="Woman Avatar">
+      </td>
+      <td th:text="${nhanvien.noiSinh}"></td>
+      <td th:text="${nhanvien.phongban.tenPhong}"></td>
+      <td th:text="${nhanvien.luong}"></td>
+      <td>
+        <a th:href="@{/nhanviens/edit/{id}(id=${nhanvien.maNv})}" class="text-info">CHỈNH SỬA</a> |
+        <a th:href="@{/nhanviens/delete/{id}(id=${nhanvien.maNv})}"> XÓA </a>
+      </td>
+    </tr>
+  </table>
+</div>
+<th:block th:replace="layout :: footer"></th:block>
+</body>
+</html>

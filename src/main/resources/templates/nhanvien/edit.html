@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <th:block th:replace="layout :: link-css"></th:block>
+    <title>ADD BOOK</title>
+</head>
+<body>
+<th:block th:replace="layout :: header"></th:block>
+<div class="container">
+    <h1>Edit book</h1>
+    <form th:action="@{/nhanviens/edit}" th:object="${nhanVIEN}" method="POST">
+        <div class="col-6 mb-3">
+            <label class="form-label" for="maNv"> MÃ NHÂN VIÊN: </label>
+            <input class="form-control" type="text" th:field="*{maNv}" id="maNv">
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="tenNv">HỌ VÀ TÊN NHÂN VIÊN: </label>
+            <input class="form-control" type="text" th:field="*{tenNv}" id="tenNv">
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="Phai">GIỚI TÍNH: </label>
+            <input class="form-control" type="text" th:field="*{Phai}" id="Phai">
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="noiSinh">NƠI SINH: </label>
+            <input class="form-control" type="text" th:field="*{noiSinh}" id="noiSinh">
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="phongban">PHÒNG BAN: </label>
+            <select class="form-control" id="phongban" name="phongban.maPhong">
+                <option value="">-- Chọn phòng ban --</option>
+                <option th:each="phongban : ${phongBAN}" th:value="${phongban.maPhong}" th:text="${phongban.tenPhong}"></option>
+            </select>
+        </div>
+        <div class="col-6 mb-3">
+            <label class="form-label" for="Luong">TIỀN LƯƠNG: </label>
+            <input class="form-control" type="text" th:field="*{Luong}" id="Luong">
+        </div>
+        <input type="submit" class="btn btn-primary" value="Save">
+    </form>
+    <br>
+    <a th:href="@{/nhanviens}">TRỞ LẠI DANH SÁCH</a>
+</div>
+<th:block th:replace="layout :: footer"></th:block>
+</body>
+</html>
